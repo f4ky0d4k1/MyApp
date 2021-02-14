@@ -10,8 +10,6 @@ import retrofit2.http.POST;
 
 // В POST запросах не забываем в конце /
 public interface Service {
-    @GET("pupa")
-    CompletableFuture<String> getPupa();
     @POST("getSchedule/")
     CompletableFuture<ResponseSchedule> getSchedule(@Body RequestSchedule body);
 }
