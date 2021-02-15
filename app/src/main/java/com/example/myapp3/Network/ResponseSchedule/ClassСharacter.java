@@ -4,7 +4,7 @@ package com.example.myapp3.Network.ResponseSchedule;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ClassNumber {
+public class ClassСharacter {
 
     @SerializedName("objectName")
     @Expose

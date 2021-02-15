@@ -39,6 +39,17 @@ public class MainActivity extends AppCompatActivity {
         } catch (InterruptedException e) {
             Log.e("InterruptedException: ", String.valueOf(e));
         }
+        //response[2][2]getClassСharacter();
+//        CompletableFuture<Integer> future = NetworkService.getInstance()
+//                .getApi()
+//                .getCourseNumber(requestSchedule.getContractId());
+//        try {
+//            requestSchedule.setCourseNumber(future.get());
+//            Log.e("Response: ", response.getError());
+//        } catch (ExecutionException e) {
+//            Log.e("ExecutionException: ", String.valueOf(e));
+//        } catch (InterruptedException e) {
+//            Log.e("InterruptedException: ", String.valueOf(e));
+//        }
     }
-
 }
