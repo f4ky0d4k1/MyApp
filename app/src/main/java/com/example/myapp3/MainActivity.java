@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
         requestSchedule.setSubgroupNumber(1);
         requestSchedule.setDate("2021-02-08");
 
+        // Позже все готовые запросы перенесу в отдельный класс, для компановки;
+        // вызов первого будет выглядеть примерно так: ResponseCourses response = ExampleClass.getCourses(requestSchedule.getContractId())
+
         // Запрос 1: GetCourses
         // Результат requestSchedule.сourseNumber = 2; в response.courses содержатся все доступные курсы для выбранной формы обучения
         {
