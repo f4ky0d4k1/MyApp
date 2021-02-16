@@ -165,25 +165,25 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
-        // Общий запрос
-        ResponseSchedule response;
-        CompletableFuture<ResponseSchedule> future = NetworkService.getInstance()
-                .getApi()
-                .getSchedule(requestSchedule.getContractId(),
-                        requestSchedule.getCourseNumber(),
-                        requestSchedule.getGroupNumber(),
-                        requestSchedule.getSubgroupNumber(),
-                        requestSchedule.getYear(),
-                        requestSchedule.getSemester(),
-                        requestSchedule.getDate());
-        try {
-            response = future.get();
-            Log.e("Response: ", response.getError());
-        } catch (ExecutionException e) {
-            Log.e("ExecutionException: ", String.valueOf(e));
-        } catch (InterruptedException e) {
-            Log.e("InterruptedException: ", String.valueOf(e));
-        }
+        // Общий запрос, пока нерабочий
+//        ResponseSchedule response;
+//        CompletableFuture<ResponseSchedule> future = NetworkService.getInstance()
+//                .getApi()
+//                .getSchedule(requestSchedule.getContractId(),
+//                        requestSchedule.getCourseNumber(),
+//                        requestSchedule.getGroupNumber(),
+//                        requestSchedule.getSubgroupNumber(),
+//                        requestSchedule.getYear(),
+//                        requestSchedule.getSemester(),
+//                        requestSchedule.getDate());
+//        try {
+//            response = future.get();
+//            Log.e("Response: ", response.getError());
+//        } catch (ExecutionException e) {
+//            Log.e("ExecutionException: ", String.valueOf(e));
+//        } catch (InterruptedException e) {
+//            Log.e("InterruptedException: ", String.valueOf(e));
+//        }
 
 
         //response[2][2]getClassСharacter();
