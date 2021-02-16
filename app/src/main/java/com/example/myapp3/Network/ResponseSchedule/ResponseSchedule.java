@@ -13,7 +13,7 @@ public class ResponseSchedule {
     @SerializedName("week")
     @Expose
     private Boolean week;
-    @SerializedName("schedule")
+    @SerializedName("ClassСharacter")
     @Expose
     private List<List<ClassСharacter>> schedule = null;
 

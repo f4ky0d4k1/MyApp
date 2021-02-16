@@ -17,6 +17,12 @@ public class RequestSchedule {
     @SerializedName("subgroupNumber")
     @Expose
     private Integer subgroupNumber;
+    @SerializedName("year")
+    @Expose
+    private Integer year;
+    @SerializedName("semester")
+    @Expose
+    private Integer semester;
     @SerializedName("date")
     @Expose
     private String date;
@@ -45,13 +51,21 @@ public class RequestSchedule {
         this.groupNumber = groupNumber;
     }
 
-    public Integer getSubGroupNumber() {
+    public Integer getSubgroupNumber() {
         return subgroupNumber;
     }
 
-    public void setSubGroupNumber(Integer subgroupNumber) {
+    public void setSubgroupNumber(Integer subgroupNumber) {
         this.subgroupNumber = subgroupNumber;
     }
+
+    public Integer getYear() { return year; }
+
+    public void setYear(Integer year) { this.year = year; }
+
+    public Integer getSemester() { return semester; }
+
+    public void setSemester(Integer semester) { this.semester = semester; }
 
     public String getDate() {
         return date;
