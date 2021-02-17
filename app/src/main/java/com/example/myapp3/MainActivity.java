@@ -34,7 +34,9 @@ public class MainActivity extends AppCompatActivity {
         requestSchedule.setDate("2021-02-08"); // понедельник запрашиваемой недели
 
         // RequestSchedule.Connect() содержит в себе все HTTP запросы для RequestSchedule
-        // осталось оформить нормальную обратоку ошибок
+        // входные данные для запросов автоматом собираются из верхнего класса
+        // т.к. get обявлен внутри requestCourses, все данные для отправки автоматом цепляются из requestCourses
+        // Осталось оформить нормальную обратоку ошибок
         // каждый response содержит перемнную error куда в будущем будет нормально помещаться текст ошибки в случае проблем
         RequestSchedule.Connect get = requestSchedule.new Connect();
 
