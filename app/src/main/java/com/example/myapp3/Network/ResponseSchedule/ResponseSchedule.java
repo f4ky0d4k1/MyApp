@@ -12,10 +12,10 @@ public class ResponseSchedule {
     private String error;
     @SerializedName("week")
     @Expose
-    private Boolean week;
-    @SerializedName("ClassСharacter")
+    private Integer week;
+    @SerializedName("schedule")
     @Expose
-    private List<List<ClassСharacter>> schedule = null;
+    private List<List<Schedule>> schedule;
 
     public String getError() {
         return error;
@@ -25,19 +25,19 @@ public class ResponseSchedule {
         this.error = error;
     }
 
-    public Boolean getWeek() {
+    public Integer getWeek() {
         return week;
     }
 
-    public void setWeek(Boolean week) {
+    public void setWeek(Integer week) {
         this.week = week;
     }
 
-    public List<List<ClassСharacter>> getSchedule() {
+    public List<List<Schedule>> getSchedule() {
         return schedule;
     }
 
-    public void setSchedule(List<List<ClassСharacter>> schedule) {
+    public void setSchedule(List<List<Schedule>> schedule) {
         this.schedule = schedule;
     }
 

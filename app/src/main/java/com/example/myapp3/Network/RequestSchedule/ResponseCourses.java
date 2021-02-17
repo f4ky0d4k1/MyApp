@@ -1,4 +1,4 @@
-package com.example.myapp3.Network;
+package com.example.myapp3.Network.RequestSchedule;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

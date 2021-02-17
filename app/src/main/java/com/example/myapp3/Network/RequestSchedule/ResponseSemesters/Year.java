@@ -1,9 +1,7 @@
-package com.example.myapp3.Network.ResponseSemesters;
+package com.example.myapp3.Network.RequestSchedule.ResponseSemesters;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 public class Year {
 

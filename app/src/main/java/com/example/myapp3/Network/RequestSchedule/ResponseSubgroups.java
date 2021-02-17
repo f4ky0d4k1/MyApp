@@ -1,24 +1,24 @@
-package com.example.myapp3.Network;
+package com.example.myapp3.Network.RequestSchedule;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ResponseDates {
+public class ResponseSubgroups {
 
     @SerializedName("error")
     @Expose
     private String error = "0";
-    @SerializedName("dates")
+    @SerializedName("subgroups")
     @Expose
-    private List<String> dates;
+    private List<Integer> subgroups;
 
     public String getError() { return error; }
 
     public void setError(String error) { this.error = error; }
 
-    public List<String> getDates() { return dates; }
+    public List<Integer> getSubgroups() { return subgroups; }
 
-    public void setDates(List<String> dates) { this.dates = dates; }
+    public void setSubgroups(List<Integer> subgroups) { this.subgroups = subgroups; }
 }

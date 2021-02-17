@@ -1,4 +1,4 @@
-package com.example.myapp3.Network.ResponseSemesters;
+package com.example.myapp3.Network.RequestSchedule.ResponseSemesters;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -13,6 +13,9 @@ public class ResponseSemesters {
     @SerializedName("years")
     @Expose
     private List<Year> years;
+    @SerializedName("groupId")
+    @Expose
+    private Integer groupId;
 
     public String getError() { return error; }
 
@@ -21,4 +24,8 @@ public class ResponseSemesters {
     public List<Year> getYears() { return years; }
 
     public void setYears(List<Year> years) { this.years = years; }
+
+    public Integer getGroupId() { return groupId; }
+
+    public void setGroupId(Integer groupId) { this.groupId = groupId; }
 }

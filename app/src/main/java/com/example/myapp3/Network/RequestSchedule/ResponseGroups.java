@@ -1,4 +1,4 @@
-package com.example.myapp3.Network;
+package com.example.myapp3.Network.RequestSchedule;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
