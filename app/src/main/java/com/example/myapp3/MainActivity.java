@@ -28,13 +28,15 @@ public class MainActivity extends AppCompatActivity {
         requestSchedule.setCourseNumber(1); // номер курса, нумерация с еденицы
         requestSchedule.setGroupNumber(1); // номер группы, нумерация с еденицы
         requestSchedule.setSubgroupNumber(0); // номер подгруппы, нумерация с еденицы
-        requestSchedule.setGroupId(0); // ИД группыв БД, нужно для упрощения запросов, в мейне не нужен
+        requestSchedule.setGroupId(0); // ИД группы в БД, нужно для упрощения запросов, в мейне не нужен
         requestSchedule.setYear(2021); // УЧЕБНЫЙ год
         requestSchedule.setSemester(1); // семестр (0 - первый, 1 - второй)
         requestSchedule.setDate("2021-02-08"); // понедельник запрашиваемой недели
 
         // RequestSchedule.Connect() содержит в себе все HTTP запросы для RequestSchedule
-        // осталось оформить нормальную обратоку ошибок
+        // входные данные для запросов автоматом собираются из верхнего класса
+        // т.к. get обявлен внутри requestCourses, все данные для отправки автоматом цепляются из requestCourses
+        // Осталось оформить нормальную обратоку ошибок
         // каждый response содержит перемнную error куда в будущем будет нормально помещаться текст ошибки в случае проблем
         RequestSchedule.Connect get = requestSchedule.new Connect();
 
@@ -58,11 +60,10 @@ public class MainActivity extends AppCompatActivity {
         //                                                    1 - доступен первый семестр
         //                                                    2 - доступен второй семестр
         //                                                    !!!3 - доступно оба семестра!!!
-        // Результат requestSchedule.year = 2020, requestSchedule.semester = 2, requestSchedule.setGroupId  = 1; в responseSemesters.group_id лежит ид группы (из БД) для упрощения дальнейших запросов
+        // Результат requestSchedule.year = 2020, requestSchedule.semester = 2; в responseSemesters.group_id лежит ид группы (из БД) для упрощения дальнейших запросов
         ResponseSemesters responseSemesters = get.getSemesters();
-        requestSchedule.setGroupId(responseSemesters.getYears().get(0).getYear());
-        requestSchedule.setGroupId(responseSemesters.getYears().get(0).getSemesters());
-        requestSchedule.setGroupId(responseSemesters.getGroupId());
+        requestSchedule.setYear(responseSemesters.getYears().get(0).getYear());
+        requestSchedule.setSemester(responseSemesters.getYears().get(0).getSemesters());
 
         // Запрос 5: GetDates
         // В ResponseDates.Dates[0] = первый доступный понедельник

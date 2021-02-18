@@ -148,6 +148,7 @@ public class RequestSchedule{
                 response = future.get();
                 if (!response.getError().equals("0"))
                     throw new Exception(response.getError()); // На данный момент ошибка в запросе останавливает программу, можно сделать вывод сообщений пользователю об ошибке
+                groupId = response.getGroupId();
             } catch (ExecutionException e) {
                 Log.e("ExecutionException: ", String.valueOf(e));
             } catch (InterruptedException e) {
