@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         requestSchedule.setSubgroupNumber(0); // номер подгруппы, нумерация с еденицы
         requestSchedule.setGroupId(0); // ИД группы в БД, нужно для упрощения запросов, в мейне не нужен
         requestSchedule.setYear(2021); // УЧЕБНЫЙ год
-        requestSchedule.setSemester(1); // семестр (0 - первый, 1 - второй)
+        requestSchedule.setSemester(1); // семестр (1 - первый, 2 - второй)
         requestSchedule.setDate("2021-02-08"); // понедельник запрашиваемой недели
 
         // RequestSchedule.Connect() содержит в себе все HTTP запросы для RequestSchedule
