@@ -34,7 +34,7 @@ public interface Service {
                                                       @Query("subgroup_number") Integer subgroup_number);
 
     @GET("getSchedule/getDates")
-    CompletableFuture<ResponseDates> getDates(@Query("group_id") Integer contract_id,
+    CompletableFuture<ResponseDates> getDates(@Query("group_id") Integer group_id,
                                               @Query("year") Integer year,
                                               @Query("semester") Integer semester);
 

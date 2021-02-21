@@ -12,9 +12,9 @@ public class Schedule {
     @SerializedName("professorName")
     @Expose
     private String professorName;
-    @SerializedName("placeName")
+    @SerializedName("place")
     @Expose
-    private String placeName;
+    private String place;
 
     public String getObjectName() {
         return objectName;
@@ -32,12 +32,12 @@ public class Schedule {
         this.professorName = professorName;
     }
 
-    public String getPlaceName() {
-        return placeName;
+    public String getPlace() {
+        return place;
     }
 
-    public void setPlaceName(String placeName) {
-        this.placeName = placeName;
+    public void setPlace(String place) {
+        this.place = place;
     }
 
 }
