@@ -7,8 +7,10 @@ import com.example.myapp3.Network.RequestSchedule.ResponseSubgroups;
 import com.example.myapp3.Network.ResponseSchedule.ResponseSchedule;
 import com.example.myapp3.Network.RequestSchedule.ResponseSemesters.ResponseSemesters;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
+import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -16,29 +18,29 @@ import retrofit2.http.Query;
 public interface Service {
 
     @GET("getSchedule/getCourses")
-    CompletableFuture<ResponseCourses> getCourses(@Query("contract_id") Integer contract_id);
+    Single<ResponseCourses> getCourses(@Query("contract_id") Integer contract_id);
 
     @GET("getSchedule/getGroups")
-    CompletableFuture<ResponseGroups> getGroups(@Query("contract_id") Integer contract_id,
+    Single<ResponseGroups> getGroups(@Query("contract_id") Integer contract_id,
                                                 @Query("course_number") Integer course_number);
 
     @GET("getSchedule/getSubgroups")
-    CompletableFuture<ResponseSubgroups> getSubgroups(@Query("contract_id") Integer contract_id,
+    Single<ResponseSubgroups> getSubgroups(@Query("contract_id") Integer contract_id,
                                                       @Query("course_number") Integer course_number,
                                                       @Query("group_number") Integer group_number);
 
     @GET("getSchedule/getSemesters")
-    CompletableFuture<ResponseSemesters> getSemesters(@Query("contract_id") Integer contract_id,
+    Single<ResponseSemesters> getSemesters(@Query("contract_id") Integer contract_id,
                                                       @Query("course_number") Integer course_number,
                                                       @Query("group_number") Integer group_number,
                                                       @Query("subgroup_number") Integer subgroup_number);
 
     @GET("getSchedule/getDates")
-    CompletableFuture<ResponseDates> getDates(@Query("group_id") Integer contract_id,
+    Single<ResponseDates> getDates(@Query("group_id") Integer contract_id,
                                               @Query("year") Integer year,
                                               @Query("semester") Integer semester);
 
     @GET("getSchedule")
-    CompletableFuture<ResponseSchedule> getSchedule(@Query("group_id") Integer group_id,
+    Single<ResponseSchedule> getSchedule(@Query("group_id") Integer group_id,
                                                     @Query("date") String date);
 }

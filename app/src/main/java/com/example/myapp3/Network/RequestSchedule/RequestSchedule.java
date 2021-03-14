@@ -2,6 +2,7 @@ package com.example.myapp3.Network.RequestSchedule;
 
 import android.util.Log;
 
+import com.example.myapp3.Network.App;
 import com.example.myapp3.Network.NetworkService;
 import com.example.myapp3.Network.RequestSchedule.ResponseSemesters.ResponseSemesters;
 import com.example.myapp3.Network.ResponseSchedule.ResponseSchedule;
@@ -77,7 +78,7 @@ public class RequestSchedule{
 
     public class Connect {
 
-        public ResponseCourses getCourses() {
+   /*     public ResponseCourses getCourses() {
             ResponseCourses response = new ResponseCourses();
             CompletableFuture<ResponseCourses> future = NetworkService.getInstance()
                     .getApi()
@@ -195,6 +196,6 @@ public class RequestSchedule{
                 Log.e("InterruptedException: ", String.valueOf(e));
             }
             return response;
-        }
+        } */
     }
 }
