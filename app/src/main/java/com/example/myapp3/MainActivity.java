@@ -1,7 +1,10 @@
 package com.example.myapp3;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,8 +41,10 @@ public class MainActivity extends AppCompatActivity {
     Spinner courseSpinner, groupSpinner, subgroupSpinner, semesterSpinner, datesSpinner;
     Button button;
     RadioButton r1, r2;
+    CardView card;
 
     int formEdu;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +55,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     private void init() {
+        card = findViewById(R.id.card_view);
         courseSpinner = findViewById(R.id.course_spinner);
         groupSpinner = findViewById(R.id.group_spinner);
         subgroupSpinner = findViewById(R.id.subgroup_spinner);
@@ -63,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         subgroupSpinner.setEnabled(false);
         semesterSpinner.setEnabled(false);
         datesSpinner.setEnabled(false);
-        button.setEnabled(false);
+
 
         r1 = findViewById(R.id.radio_1);
         r2 = findViewById(R.id.radio_0);
@@ -103,10 +110,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         courseSpinner.setAdapter(adapter);
         courseSpinner.setEnabled(true);
-        courseSpinner.post(new Runnable() {
-            @Override
-            public void run() {
-                courseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        courseSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         disposable.add(app.getNetworkService().getApi().getGroups(formEdu, (Integer) courseSpinner.getSelectedItem())
@@ -130,9 +134,6 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-            }
-        });
-
     }
 
     private void setGroupSpinner(List<Integer> list) {
@@ -240,7 +241,6 @@ public class MainActivity extends AppCompatActivity {
         datesSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                button.setEnabled(true);
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

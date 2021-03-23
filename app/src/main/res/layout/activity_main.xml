@@ -8,10 +8,20 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
+    <com.google.android.material.card.MaterialCardView
+        android:layout_height="400dp"
+        android:layout_width="350dp"
+        android:id="@+id/card_view"
+        android:layout_gravity="center"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="6dp">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
     <TextView
         style="@style/TextViewPrimary"
         android:text="@string/form_edu" />
-
 
     <RadioGroup
         android:id="@+id/radio"
@@ -78,12 +88,18 @@
         android:id="@+id/dates_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+</LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="230dp"
+        android:layout_height="40dp"
         android:id="@+id/button"
-        android:layout_gravity="bottom|right"
-        android:text="Показать расписание"/>
+        android:layout_marginTop="15dp"
+        android:layout_gravity="bottom|end"
+        android:text="Показать расписание"
+        android:textColor="@color/blue_shadow"
+        android:background="@drawable/custom_button" />
 
 
 

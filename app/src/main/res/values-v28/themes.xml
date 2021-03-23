@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Shadow">
+        <item name="android:outlineAmbientShadowColor">@color/blue_shadow</item>
+        <item name="android:outlineSpotShadowColor">@color/blue_shadow</item>
+    </style>
+</resources>
