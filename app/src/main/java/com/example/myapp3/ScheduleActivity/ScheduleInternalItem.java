@@ -1,13 +1,13 @@
-package com.example.myapp3;
+package com.example.myapp3.ScheduleActivity;
 
-public class InternalItem {
+public class ScheduleInternalItem {
 
     private String time;
     private String object;
     private String place;
     private String professor;
 
-    public InternalItem(String time, String object, String place, String professor) {
+    public ScheduleInternalItem(String time, String object, String place, String professor) {
         this.time = time;
         this.object = object;
         this.place = place;

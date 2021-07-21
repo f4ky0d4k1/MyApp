@@ -4,50 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:layout_marginTop="5dp"
     android:background="@layout/rounded_border_light_gray">
 
     <TextView
-        android:id="@+id/time"
+        android:id="@+id/text_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@layout/rounded_border_gray"
         android:gravity="center"
-        android:text="Time"
         android:textColor="@color/black"
-        tools:layout_editor_absoluteX="13dp"
-        tools:layout_editor_absoluteY="33dp" />
-
-    <TextView
-        android:id="@+id/object"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
-        android:paddingBottom="2dp"
-        android:text="Object"
-        android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@id/time"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="13dp" />
 
     <TextView
-        android:id="@+id/place"
+        android:id="@+id/text_object"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
+        android:paddingStart="9dp"
+        android:paddingEnd="9dp"
         android:paddingBottom="2dp"
-        android:text="Place"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/object"
+        app:layout_constraintTop_toBottomOf="@id/text_time"
         tools:layout_editor_absoluteX="13dp" />
 
     <TextView
-        android:id="@+id/professor"
+        android:id="@+id/text_place"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="5dp"
+        android:paddingStart="9dp"
+        android:paddingEnd="9dp"
         android:paddingBottom="2dp"
-        android:text="Professor"
         android:textColor="@color/black"
-        app:layout_constraintTop_toBottomOf="@+id/place"
+        app:layout_constraintTop_toBottomOf="@+id/text_object"
         tools:layout_editor_absoluteX="13dp" />
+
+    <TextView
+        android:id="@+id/text_professor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="9dp"
+        android:paddingEnd="9dp"
+        android:paddingBottom="2dp"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/text_place"
+        tools:layout_editor_absoluteX="13dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
