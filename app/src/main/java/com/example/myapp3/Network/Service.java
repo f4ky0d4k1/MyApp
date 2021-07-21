@@ -14,7 +14,7 @@ import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
-// В POST запросах не забываем в конце /
+// В POST запросах не забываем в конце '/'
 public interface Service {
 
     @GET("getSchedule/getCourses")

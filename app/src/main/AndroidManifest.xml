@@ -20,6 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".RequestActivity"
+            android:label="@string/activity_request_title">
+        </activity>
+        <activity android:name=".ScheduleActivity"
+            android:label="@string/activity_schedule_title">
+        </activity>
     </application>
 
 </manifest>

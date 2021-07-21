@@ -1,15 +1,11 @@
 <resources>
-    <string name="app_name">MyApp3</string>
-    <string-array name="courses">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
-        <item>4</item>
-    </string-array>
+    <string name="app_name">Sfedu.schedule</string>
     <string name="form_edu">Выберите форму обучения</string>
     <string name="course">Выберите курс</string>
     <string name="group">Выберите группу</string>
     <string name="subgroup">Выберите подгруппу</string>
     <string name="semester">Выберите семестр</string>
     <string name="date">Выберите дату</string>
+    <string name="activity_request_title">Что ищем?</string>
+    <string name="activity_schedule_title">Вот что нашлось:</string>
 </resources>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@layout/rounded_border_light_gray">
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@layout/rounded_border_gray"
+        android:gravity="center"
+        android:text="Time"
+        android:textColor="@color/black"
+        tools:layout_editor_absoluteX="13dp"
+        tools:layout_editor_absoluteY="33dp" />
+
+    <TextView
+        android:id="@+id/object"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingBottom="2dp"
+        android:text="Object"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@id/time"
+        tools:layout_editor_absoluteX="13dp" />
+
+    <TextView
+        android:id="@+id/place"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingBottom="2dp"
+        android:text="Place"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/object"
+        tools:layout_editor_absoluteX="13dp" />
+
+    <TextView
+        android:id="@+id/professor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:paddingBottom="2dp"
+        android:text="Professor"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toBottomOf="@+id/place"
+        tools:layout_editor_absoluteX="13dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
