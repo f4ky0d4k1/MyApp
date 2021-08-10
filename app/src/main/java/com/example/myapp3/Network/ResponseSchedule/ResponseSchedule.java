@@ -1,11 +1,12 @@
 
 package com.example.myapp3.Network.ResponseSchedule;
 
+import java.io.Serializable;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseSchedule {
+public class ResponseSchedule implements Serializable {
 
     @SerializedName("error")
     @Expose

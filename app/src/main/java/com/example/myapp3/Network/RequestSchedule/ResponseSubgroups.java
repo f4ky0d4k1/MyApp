@@ -12,13 +12,22 @@ public class ResponseSubgroups {
     private String error = "0";
     @SerializedName("subgroups")
     @Expose
-    private List<Integer> subgroups;
+    private List<String> subgroups;
+    @SerializedName("groupIds")
+    @Expose
+    private List<Integer> groupIds;
 
     public String getError() { return error; }
 
     public void setError(String error) { this.error = error; }
 
-    public List<Integer> getSubgroups() { return subgroups; }
+    public List<String> getSubgroups() { return subgroups; }
 
-    public void setSubgroups(List<Integer> subgroups) { this.subgroups = subgroups; }
+    public void setSubgroups(List<String> subgroups) { this.subgroups = subgroups; }
+
+    public List<Integer> getGroupIds() { return groupIds; }
+
+    public Integer getGroupId(int position) { return groupIds.get(position); }
+
+    public void setGroupIds(List<Integer> groupIds) { this.groupIds = groupIds; }
 }

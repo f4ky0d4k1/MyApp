@@ -1,80 +1,227 @@
 package com.example.myapp3;
 
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.PorterDuff;
+import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-
+import com.example.myapp3.Network.App;
+import com.example.myapp3.Network.Cookie;
 import com.example.myapp3.Network.RequestSchedule.RequestSchedule;
-import com.example.myapp3.Network.RequestSchedule.ResponseCourses;
-import com.example.myapp3.Network.RequestSchedule.ResponseDates;
-import com.example.myapp3.Network.RequestSchedule.ResponseGroups;
-import com.example.myapp3.Network.RequestSchedule.ResponseSemesters.ResponseSemesters;
-import com.example.myapp3.Network.RequestSchedule.ResponseSubgroups;
-import com.example.myapp3.Network.ResponseSchedule.ResponseSchedule;
-import com.example.myapp3.Network.Service;
+import com.example.myapp3.RequestActivity.RequestActivity;
+import com.example.myapp3.Util.Substitution;
+import com.example.myapp3.Util.Util;
 
-import java.util.List;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
-    private Service service;
+
+    private App app;
+    private CompositeDisposable disposable;
+    private Button buttonIdentify, buttonSkip, buttonRegisration;
+    private TextView editLogin, textLoginHint, editPassword, textPasswordHint, textLoginSuffix;
+    private Context thisContext;
+    private boolean textLoginOK, textPasswordOK;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        thisContext = this;
+        setContentView(R.layout.activity_identification);
+        app = (App) getApplication();
+        disposable = new CompositeDisposable();
 
-        // Пример заполнения входных данных, представленны все поля
-        RequestSchedule requestSchedule = new RequestSchedule();
-        requestSchedule.setContractId(1); // форма обучения
-        requestSchedule.setCourseNumber(1); // номер курса, нумерация с еденицы
-        requestSchedule.setGroupNumber(1); // номер группы, нумерация с еденицы
-        requestSchedule.setSubgroupNumber(0); // номер подгруппы, нумерация с еденицы
-        requestSchedule.setGroupId(0); // ИД группы в БД, нужно для упрощения запросов, в мейне не нужен
-        requestSchedule.setYear(2021); // УЧЕБНЫЙ год
-        requestSchedule.setSemester(0); // семестр (0 - первый, 1 - второй)
-        requestSchedule.setDate("2021-02-08"); // понедельник запрашиваемой недели
+        Substitution.init(getApplicationContext());
 
-        // RequestSchedule.Connect() содержит в себе все HTTP запросы для RequestSchedule
-        // входные данные для запросов автоматом собираются из верхнего класса
-        // т.к. get обявлен внутри requestCourses, все данные для отправки автоматом цепляются из requestCourses
-        // Осталось оформить нормальную обратоку ошибок
-        // каждый response содержит перемнную error куда в будущем будет нормально помещаться текст ошибки в случае проблем
-        RequestSchedule.Connect get = requestSchedule.new Connect();
+        Cookie cookie = (Cookie) Util.open(getApplicationContext(), Cookie.class.getSimpleName());
+        if (cookie != null) {
+            disposable.add(app.getNetworkService().getApi().checkUser(cookie.getUserId(), cookie.getHash())
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe((error, throwable) -> {
+                        if (throwable != null) {
+                            Toast.makeText(thisContext, R.string.data_loading_error, Toast.LENGTH_SHORT).show();
+                            init();
+                        } else {
+                            if (!error.equals("0")) {
+                                Util.delete(getApplicationContext(), Cookie.class.getSimpleName());
+                                if (error.equals("1"))
+                                    Toast.makeText(thisContext, R.string.invalid_session, Toast.LENGTH_SHORT).show();
+                                else
+                                    Toast.makeText(thisContext, error, Toast.LENGTH_SHORT).show();
+                                init();
+                            }
+                            else {
+                                Intent intent = new Intent(thisContext, RequestActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }
+                    })
+            );
+        } else init();
+    }
 
-        // Запрос 1: GetCourses
-        // Результат requestSchedule.сourseNumber = 2; в responseCourses.courses содержатся все доступные курсы для выбранной формы обучения в виде массива
-        ResponseCourses responseCourses = get.getCourses();
-        requestSchedule.setCourseNumber(responseCourses.getCourses().get(0));
+    private void init() {
 
-        // Запрос 2: GetGroups
-        // Результат requestSchedule.groupNumber = 6; в responseGroups.groups содержатся все доступные группы для выбранного курса в виде массива
-        ResponseGroups responseGroups = get.getGroups();
-        requestSchedule.setGroupNumber(responseGroups.getGroups().get(0));
+        editLogin = findViewById(R.id.edit_login);
+        textLoginHint = findViewById(R.id.text_login_hint);
+        textLoginSuffix = findViewById(R.id.text_login_suffix);
+        editPassword = findViewById(R.id.edit_password);
+        textPasswordHint = findViewById(R.id.text_password_hint);
+        buttonIdentify = findViewById(R.id.button_identify);
+        buttonSkip = findViewById(R.id.button_skip);
+        buttonRegisration = findViewById(R.id.button_registration);
 
-        // Запрос 3: GetSubGroups
-        // Результат requestSchedule.subgroupNumber = 1; в responseSubgroups.subgroups содержатся все доступные подгруппы для выбранной группы в виде массива
-        ResponseSubgroups responseSubgroups = get.getSubgroups();
-        requestSchedule.setSubgroupNumber(responseSubgroups.getSubgroups().get(0));
+        textLoginSuffix.setText(R.string.sfedu_ru);
+        setButtonIdentify();
+        setButtonSkip();
+        setButtonRegistration();
 
-        // Запрос 4: GetSemesters
-        // В ResponseSemesters.Year.Semesters значения такие: 0 - доступных семемтров нет, что является ошибкой в БД (мои кривые руки)
-        //                                                    1 - доступен первый семестр
-        //                                                    2 - доступен второй семестр
-        //                                                    !!!3 - доступно оба семестра!!!
-        // Результат requestSchedule.year = 2020, requestSchedule.semester = 2; в responseSemesters.group_id лежит ид группы (из БД) для упрощения дальнейших запросов
-        ResponseSemesters responseSemesters = get.getSemesters();
-        requestSchedule.setYear(responseSemesters.getYears().get(0).getYear());
-        requestSchedule.setSemester(responseSemesters.getYears().get(0).getSemesters());
+        textLoginOK = false;
+        textPasswordOK = false;
 
-        // Запрос 5: GetDates
-        // В ResponseDates.Dates[0] = первый доступный понедельник
-        // В ResponseDates.Dates[1] = последний доступный понедельник
-        // Результат date_begin = 2021-02-08, date_end = 2021-05-31
-        ResponseDates responseDates = get.getDates();
-        String date_begin = responseDates.getDates().get(0);
-        String date_end = responseDates.getDates().get(1);
+        editLogin.addTextChangedListener(new TextWatcher() {
 
-        // Общий запрос
-        ResponseSchedule responseSchedule = get.getSchedule();
+            private final Runnable post = new Runnable() {
+                @Override
+                public void run() {
+                    textLoginHint.setVisibility(View.INVISIBLE);
+                }
+            };
 
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String status = Util.checkText(thisContext, editLogin.getText().toString(), R.string.pattern_login, R.string.pattern_login_symbols, 3, 40);
+                textLoginHint.removeCallbacks(post);
+                textLoginHint.setText(status);
+                if (!status.equals(getString(R.string.OK))) {
+                    textLoginOK = false;
+                    buttonIdentify.setEnabled(false);
+                    textLoginHint.setTextColor(getColor(R.color.design_default_color_error));
+                    editLogin.getBackground().setColorFilter(getColor(R.color.design_default_color_error), PorterDuff.Mode.SRC_ATOP);
+                } else {
+                    textLoginOK = true;
+                    if (textPasswordOK = true) buttonIdentify.setEnabled(true);
+                    textLoginHint.setTextColor(getColor(R.color.teal_200));
+                    editLogin.getBackground().setColorFilter(getColor(R.color.teal_200), PorterDuff.Mode.SRC_ATOP);
+                }
+                textLoginHint.setVisibility(View.VISIBLE);
+                textLoginHint.postDelayed(post, 3000);
+            }
+        });
+
+        editPassword.addTextChangedListener(new TextWatcher() {
+
+            private final Runnable post = new Runnable() {
+                @Override
+                public void run() {
+                    textPasswordHint.setVisibility(View.INVISIBLE);
+                }
+            };
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String status = Util.checkText(thisContext, editPassword.getText().toString(), R.string.pattern_password, R.string.pattern_password_symbols, 8, 40);
+                textPasswordHint.removeCallbacks(post);
+                textPasswordHint.setText(status);
+                if (!status.equals(getString(R.string.OK))) {
+                    textPasswordOK = false;
+                    buttonIdentify.setEnabled(false);
+                    textPasswordHint.setTextColor(getColor(R.color.design_default_color_error));
+                    editPassword.getBackground().setColorFilter(getColor(R.color.design_default_color_error), PorterDuff.Mode.SRC_ATOP);
+                } else {
+                    textPasswordOK = true;
+                    if (textLoginOK = true) buttonIdentify.setEnabled(true);
+                    textPasswordHint.setTextColor(getColor(R.color.teal_200));
+                    editPassword.getBackground().setColorFilter(getColor(R.color.teal_200), PorterDuff.Mode.SRC_ATOP);
+                }
+                textPasswordHint.setVisibility(View.VISIBLE);
+                textPasswordHint.postDelayed(post, 3000);
+            }
+        });
+    }
+
+    private void setButtonIdentify() {
+        buttonIdentify.setEnabled(false);
+        buttonIdentify.setOnClickListener(view -> disposable.add(app.getNetworkService().getApi()
+                .identify(editLogin.getText().toString() + textLoginSuffix.getText().toString(), editPassword.getText().toString())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe((cookie, throwable) -> {
+                    if (throwable != null) {
+                        Toast.makeText(thisContext, R.string.data_loading_error, Toast.LENGTH_SHORT).show();
+                    } else {
+                        String error = cookie.getError();
+                        if (!error.equals("0"))
+                            if (error.equals("1")) {
+                                Toast.makeText(thisContext, R.string.wrong_data, Toast.LENGTH_SHORT).show();
+                            } else
+                                Toast.makeText(thisContext, error, Toast.LENGTH_SHORT).show();
+                        else {
+                            String hash = cookie.getHash();
+                            Log.v("identify", "hash " + hash);
+                            Util.save(getApplicationContext(), cookie);
+                            Intent intent = new Intent(thisContext, RequestActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+                })
+        ));
+    }
+
+    private void setButtonSkip() {
+        buttonSkip.setEnabled(true);
+        buttonSkip.setOnClickListener(view -> {
+            Intent intent = new Intent(thisContext, RequestActivity.class);
+            intent.putExtra(RequestSchedule.class.getSimpleName(), (Bundle) null);
+            startActivity(intent);
+            finish();
+        });
+    }
+
+    private void setButtonRegistration() {
+        buttonRegisration.setEnabled(true);
+        buttonRegisration.setOnClickListener(view -> {
+            Intent intent = new Intent(thisContext, RegistrationActivity.class);
+            startActivity(intent);
+            finish();
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        disposable.clear();
     }
 }

@@ -1,17 +1,17 @@
 package com.example.myapp3.Network.RequestSchedule;
 
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseCourses {
+import java.util.List;
 
+public class ResponseContracts {
     @SerializedName("error")
     @Expose
     private String error = "0";
-    @SerializedName("courses")
+    @SerializedName("contractIds")
     @Expose
-    private List<String> courses;
+    private List<Integer> contractIds;
 
     public String getError() {
         return error;
@@ -21,14 +21,7 @@ public class ResponseCourses {
         this.error = error;
     }
 
-    public List<String> getCourses() {
-        return courses;
-    }
+    public List<Integer> getContractIds() { return contractIds; }
 
-    public void setCourses(List<String> courses) {
-        this.courses = courses;
-    }
+    public void setContractIds(List<Integer> contractIds) { this.contractIds = contractIds; }
 }
-
-
-

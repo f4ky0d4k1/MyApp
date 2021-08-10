@@ -10,22 +10,15 @@ public class ResponseSemesters {
     @SerializedName("error")
     @Expose
     private String error = "0";
-    @SerializedName("years")
+    @SerializedName("semesters")
     @Expose
-    private List<Year> years;
-    @SerializedName("groupId")
-    @Expose
-    private Integer groupId;
+    private List<Semester> semesters;
 
     public String getError() { return error; }
 
     public void setError(String error) { this.error = error; }
 
-    public List<Year> getYears() { return years; }
+    public List<Semester> getSemesters() { return semesters; }
 
-    public void setYears(List<Year> years) { this.years = years; }
-
-    public Integer getGroupId() { return groupId; }
-
-    public void setGroupId(Integer groupId) { this.groupId = groupId; }
+    public void setSemesters(List<Semester> semesters) { this.semesters = semesters; }
 }

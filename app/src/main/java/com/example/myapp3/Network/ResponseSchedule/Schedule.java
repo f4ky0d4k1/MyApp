@@ -4,7 +4,9 @@ package com.example.myapp3.Network.ResponseSchedule;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Schedule {
+import java.io.Serializable;
+
+public class Schedule implements Serializable {
 
     @SerializedName("objectName")
     @Expose

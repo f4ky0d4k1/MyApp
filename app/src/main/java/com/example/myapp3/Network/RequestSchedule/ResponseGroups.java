@@ -12,13 +12,13 @@ public class ResponseGroups {
     private String error = "0";
     @SerializedName("groups")
     @Expose
-    private List<Integer> groups;
+    private List<String> groups;
 
     public String getError() { return error; }
 
     public void setError(String error) { this.error = error; }
 
-    public List<Integer> getGroups() { return groups; }
+    public List<String> getGroups() { return groups; }
 
-    public void setGroups(List<Integer> groups) { this.groups = groups; }
+    public void setGroups(List<String> groups) { this.groups = groups; }
 }

@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+        android:name=".Network.App"
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,12 +13,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp3">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".RequestActivity.RequestActivity"
+            android:label="@string/activity_request_title">
+        </activity>
+        <activity android:name=".ScheduleActivity.ScheduleActivity"
+            android:label="@string/activity_schedule_title">
+        </activity>
+        <activity android:name=".RegistrationActivity"
+            android:label="@string/activity_registration_title">
+        </activity>
+        <activity android:name=".ProfileActivity"
+            android:label="@string/activity_personal_information_title">
         </activity>
     </application>
 
