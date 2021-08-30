@@ -33,8 +33,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class ProfileActivity extends AppCompatActivity {
-
+public class AdminPanelActivity  extends AppCompatActivity {
     App app;
     CompositeDisposable disposable;
     Spinner spinnerFaculty, spinnerContract, spinnerCourse, spinnerGroup, spinnerSubgroup;
@@ -47,7 +46,7 @@ public class ProfileActivity extends AppCompatActivity {
     ResponseFaculties responseFaculties;
     ResponseSubgroups responseSubgroups;
     Context thisContext;
-    boolean fill, editSurnameOK, editNameOK, editPatronymicOK;
+    boolean editSurnameOK, editNameOK, editPatronymicOK;
 
 
     @Override
@@ -203,7 +202,6 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
     private void init() {
-        fill = true;
 
         requestSchedule = (RequestSchedule) Util.open(getApplicationContext(), RequestSchedule.class.getSimpleName(), Util.PERSONAL_FILE);
         if (requestSchedule == null) {

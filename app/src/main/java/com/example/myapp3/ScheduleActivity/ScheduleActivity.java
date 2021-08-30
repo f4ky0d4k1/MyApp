@@ -5,7 +5,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
@@ -17,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.myapp3.Network.App;
 import com.example.myapp3.Network.RequestSchedule.RequestSchedule;
 import com.example.myapp3.Network.ResponseSchedule.ResponseSchedule;
-import com.example.myapp3.Network.ResponseSchedule.Schedule;
+import com.example.myapp3.Network.ResponseSchedule.Lesson;
 import com.example.myapp3.R;
 import com.example.myapp3.Util.Substitution;
 
@@ -70,17 +69,17 @@ public class ScheduleActivity extends AppCompatActivity {
         ArrayList<ScheduleItem> scheduleItems = new ArrayList<>();
         int i = 0;
         LocalDate date = LocalDate.parse(requestSchedule.getDate());
-        for (List<Schedule> day : responseSchedule.getSchedule()) {
+        for (List<Lesson> day : responseSchedule.getSchedule()) {
             List<ScheduleInternalItem> scheduleInternalItems = new ArrayList<>();
             int j = 0;
-            for (Schedule lesson : day) {
+            for (Lesson lesson : day) {
                 String time = Substitution.getTime(j);
                 String object = lesson.getObjectName();
-                String place = lesson.getPlaceName();
-                if (place.equals("")) place = "Место неизвестно";
+                String place = lesson.getPlace();
+                if (place == null || place.equals("")) place = "Место неизвестно";
                 String professor = lesson.getProfessorName();
-                if (professor.equals("")) professor = "Преподаватель неизвестен";
-                if (!object.equals("")) {
+                if (professor == null || professor.equals("")) professor = "Преподаватель неизвестен";
+                if (object != null && !object.equals("")) {
                     ScheduleInternalItem scheduleInternalItem = new ScheduleInternalItem(time, object, place, professor);
                     scheduleInternalItems.add(scheduleInternalItem);
                 }

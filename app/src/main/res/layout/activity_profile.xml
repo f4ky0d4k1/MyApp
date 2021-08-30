@@ -39,7 +39,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <EditText
-                        android:id="@+id/edit_surname"
+                        android:id="@+id/edit_first"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/last_name"
@@ -49,14 +49,14 @@
                         android:paddingEnd="5dp" />
 
                     <TextView
-                        android:id="@+id/text_surname_hint"
+                        android:id="@+id/text_first_hint"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp" />
 
                     <EditText
-                        android:id="@+id/edit_name"
+                        android:id="@+id/edit_second"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/first_name"
@@ -66,14 +66,14 @@
                         android:paddingEnd="5dp" />
 
                     <TextView
-                        android:id="@+id/text_name_hint"
+                        android:id="@+id/text_second_hint"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingStart="5dp"
                         android:paddingEnd="5dp" />
 
                     <EditText
-                        android:id="@+id/edit_patronymic"
+                        android:id="@+id/edit_third"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/patronymic"
@@ -83,7 +83,7 @@
                         android:paddingEnd="5dp" />
 
                     <TextView
-                        android:id="@+id/text_patronymic_hint"
+                        android:id="@+id/text_third_hint"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:paddingStart="5dp"

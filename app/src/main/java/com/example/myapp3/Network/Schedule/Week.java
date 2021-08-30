@@ -1,16 +1,22 @@
+package com.example.myapp3.Network.Schedule;
 
-package com.example.myapp3.Network.ResponseSchedule;
-
-import java.io.Serializable;
-import java.util.List;
+import com.example.myapp3.Network.ResponseSchedule.Lesson;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class ResponseSchedule implements Serializable {
+import java.io.Serializable;
+import java.util.List;
+
+public class Week implements Serializable {
+
+    private static final long serialVersionUID = 2934010248934323749L;
 
     @SerializedName("error")
     @Expose
     private String error;
+    @SerializedName("date")
+    @Expose
+    private String date;
     @SerializedName("week")
     @Expose
     private Integer week;

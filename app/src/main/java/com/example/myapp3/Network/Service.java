@@ -8,6 +8,7 @@ import com.example.myapp3.Network.RequestSchedule.ResponseGroups;
 import com.example.myapp3.Network.RequestSchedule.ResponseSemesters.ResponseSemesters;
 import com.example.myapp3.Network.RequestSchedule.ResponseSubgroups;
 import com.example.myapp3.Network.ResponseSchedule.ResponseSchedule;
+import com.example.myapp3.Network.Schedule.University;
 
 import io.reactivex.Single;
 import retrofit2.http.GET;
@@ -18,6 +19,9 @@ public interface Service {
 
     @GET("getSchedule/getFaculties")
     Single<ResponseFaculties> getFaculties();
+
+    @GET("test/getSchedule/getFaculties")
+    Single<University> getFacultiesTest();
 
     @GET("getSchedule/getContracts")
     Single<ResponseContracts> getContracts(@Query("faculty_id") Integer facultyId);
@@ -83,5 +87,6 @@ public interface Service {
     @GET("profile")
     Single<Profile> getProfile(@Query("id") Long id,
                                @Query("hash") String hash);
+
 
 }

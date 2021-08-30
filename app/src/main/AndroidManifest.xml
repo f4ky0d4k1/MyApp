@@ -31,6 +31,9 @@
         <activity android:name=".ProfileActivity"
             android:label="@string/activity_personal_information_title">
         </activity>
+        <activity android:name=".AdminPanelActivity"
+            android:label="@string/activity_admin_panel_title">
+        </activity>
     </application>
 
 </manifest>

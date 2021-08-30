@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Schedule implements Serializable {
+public class Lesson implements Serializable {
 
     @SerializedName("objectName")
     @Expose

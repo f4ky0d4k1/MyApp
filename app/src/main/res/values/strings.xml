@@ -60,6 +60,9 @@
     <string name="OK">OK</string>
     <string name="invalid_session">Последняя сессия недействительна</string>
     <string name="registration_on_back">Отменить регистрацию: Вы уверены?</string>
+    <!--admin panel-->
+    <string name="activity_admin_panel_title">Паель управления контентом:</string>
+    <string name="delete">УДАЛИТЬ</string>
     <!--SUBS -->
     <string name="jan">Январь</string>
     <string name="feb">Февраль</string>
