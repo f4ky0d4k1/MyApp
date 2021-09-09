@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapp3">
+    package="ru.sfedu.schedule">
 
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:name=".Network.App"
+        android:name="ru.sfedu.schedule.network.App"
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,25 +13,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApp3">
-        <activity android:name=".MainActivity" android:exported="true">
+        <activity android:name="ru.sfedu.schedule.activities.MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".RequestActivity.RequestActivity"
+        <activity android:name="ru.sfedu.schedule.activities.requestActivity.RequestActivity"
             android:label="@string/activity_request_title">
         </activity>
-        <activity android:name=".ScheduleActivity.ScheduleActivity"
+        <activity android:name="ru.sfedu.schedule.activities.scheduleActivity.ScheduleActivity"
             android:label="@string/activity_schedule_title">
         </activity>
-        <activity android:name=".RegistrationActivity"
+        <activity android:name="ru.sfedu.schedule.activities.RegistrationActivity"
             android:label="@string/activity_registration_title">
         </activity>
-        <activity android:name=".ProfileActivity"
+        <activity android:name="ru.sfedu.schedule.activities.ProfileActivity"
             android:label="@string/activity_personal_information_title">
         </activity>
-        <activity android:name=".AdminPanelActivity"
+        <activity android:name=".activities.AdminPanelActivity"
             android:label="@string/activity_admin_panel_title">
         </activity>
     </application>
